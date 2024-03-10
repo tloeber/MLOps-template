@@ -1,0 +1,5 @@
+[MESSAGES CONTROL]
+# Descriptive name + type hints often make docstrings redundant. If that's not sufficient, a docstring should be enforced by peer reviewers. (Unfortunately, there is no automatic way to check if code is clear enough for humans.)
+disable=missing-module-docstring,
+    missing-class-docstring,
+    missing-function-docstring,
