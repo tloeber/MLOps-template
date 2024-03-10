@@ -5,7 +5,7 @@
 		}
 	],
 	"settings": {
-		"terminal.integrated.cwd": "src/sm_pipelines_oo",
+		"terminal.integrated.cwd": "src/my_project",
 	},
 	// Debug config for Python
 	"launch": {
