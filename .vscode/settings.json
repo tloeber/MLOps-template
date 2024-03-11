@@ -1,0 +1,54 @@
+{
+    // Show the editor's rulers (vertical lines) at 100 characters
+    "editor.rulers": [100],
+    // Show whitespace characters
+    "editor.renderWhitespace": "all",
+    // Replace tabs with spaces by default, but detect indentation. Thus, for files where we want tabs instead (e.g., Makefiles), we only have to manually change
+    // to tabs on initial file creation. The preferred solution would be to override this setting by language, but I did not find a way to do this for `make`.
+    "editor.detectIndentation": true,
+    // Use spaces instead of tabs
+    "editor.insertSpaces": true,
+
+    "python.analysis.typeCheckingMode": "basic",
+    // Show inlay type hints, where not explicilty defined
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "[python]": {
+        // Auto formatting on save using black
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "editor.formatOnType": false,
+        "editor.formatOnSave": true,
+        "files.insertFinalNewline": true,
+
+    },
+    // Activate virtual environment in integrated terminal
+    "python.terminal.activateEnvironment": true,
+    "black-formatter.args": [
+        "--max-line-length=100"
+    ],
+        // New shells inherit env from VSCode. (No effect on Windows)
+    // "terminal.integrated.inheritEnv": true, // Has to be set at *user* level
+
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 3000,  // So that auto-formatting doesn't strip whitespace before typing next word
+    "files.autoSaveWorkspaceFilesOnly": true,
+    // Fix whitespaces before saving to avoid spurrious diffs and to easier identify duplications
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,  // If more than one
+    // Enabled only for Python, because in notebooks this added a newline to every cell (I did not find a way to create language-specific settings for notebooks only)
+    "files.insertFinalNewline": false,
+
+    "git.autofetch": true,
+
+    "[terraform]": {
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file"
+    },
+    "[terraform-vars]": {
+        "editor.defaultFormatter": "hashicorp.terraform",
+        "editor.formatOnSave": true,
+        "editor.formatOnSaveMode": "file"
+    },
+
+}
