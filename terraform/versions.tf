@@ -5,9 +5,18 @@ terraform {
       source  = "integrations/github"
       version = "6.0.1"
     }
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.40.0"
+    }
   }
 }
 
+provider "aws" {
+}
+
+
 provider "github" {
-  # Configuration options
+  # owner = var.github_organization
+  token = data.aws_secretsmanager_secret_version.github_PAT_version.secret_string
 }
