@@ -1,0 +1,33 @@
+{
+    "folders": [
+        {
+            "path": "..",
+        }
+    ],
+    "settings": {
+        "terminal.integrated.cwd": "./terraform/",
+
+        // Settings that can't be set by folder, so have to go into workspace settings
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.defaultProfile.windows": "Git Bash",
+        "terminal.integrated.defaultProfile.osx": "bash",
+        "python.languageServer": "Pylance",
+        "terraform.experimentalFeatures.validateOnSave": true,
+
+    },
+    // Debug config for Python
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "name": "Python: Current File",
+                "type": "debugpy",
+                "request": "launch",
+                "program": "${file}",
+                "console": "integratedTerminal",
+                "justMyCode": true,
+                "cwd":"${workspaceRoot}",
+            }
+        ],
+    },
+}
