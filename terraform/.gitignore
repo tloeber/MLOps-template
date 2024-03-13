@@ -2,7 +2,7 @@
 # =============
 
 # To exclude a tfvars file (e.g., if repo is public), explicitly name it `untracked.tfvars`
-untracked.tfvars
+untracked.*.tfvars
 
 
 # Standard TF conventions
