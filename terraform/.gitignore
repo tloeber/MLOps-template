@@ -4,12 +4,12 @@
 # To exclude a tfvars file (e.g., if repo is public), explicitly name it `untracked.tfvars`
 untracked.*.tfvars
 
-
 # Standard TF conventions
 # ========================
 
 # Local .terraform directories and files
-**/.terraform*
+# Note: Due to trailing `/`, this does NOT ignore lock file, which should be tracked: https://developer.hashicorp.com/terraform/language/files/dependency-lock
+**/.terraform/
 
 # .tfstate files
 *.tfstate
