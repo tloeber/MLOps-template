@@ -1,13 +1,24 @@
 SHELL := /bin/bash
+# Set major and minor version of python
+PYTHON := python3.11
+PROJECT_NAME := MLOps_template
+VENV_LOCATION := ~/.virtual_environments/${PROJECT_NAME}
 
 env:
-	(python3 -m poetry --version > /dev/null) || pip3 install poetry
-	python3 -m poetry lock
-	python3 -m poetry install --all-extras
-	python3 -m poetry shell
+	# (Re-)create directory for virtual environments
+	rm -rf ${VENV_LOCATION}
+	mkdir -p ${VENV_LOCATION}
+	# Create virtual environment manually, so we control name
+	${PYTHON} -m venv ${VENV_LOCATION}
+	# We will use poetry from *within* the virtual environment
+	source ${VENV_LOCATION}/bin/activate && \
+		which python && \
+		${PYTHON} -m pip install poetry && \
+		poetry env use ${PYTHON} && \
+		${PYTHON} -m poetry install --all-extras
 
 env-update:
-	python3 -m poetry update
+	${PYTHON} -m poetry update
 
 type-check:
 	mypy src/my_project --exclude '_tmp/' --exclude '_old/'
