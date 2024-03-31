@@ -1,5 +1,9 @@
 # Requires Terraform v0.13 or later
 terraform {
+  # "Organization" and "workspaces"  are set as environment variables.
+  # See https://developer.hashicorp.com/terraform/cli/cloud/settings#environment-variables
+  cloud {
+  }
   required_providers {
     github = {
       source  = "integrations/github"

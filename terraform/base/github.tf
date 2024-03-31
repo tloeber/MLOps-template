@@ -1,6 +1,6 @@
 # todo: create from module (based in central-infra repo)
 resource "github_repository" "project_repo" {
-  name               = "MLOps-template"
+  name               = var.project_name
   description        = "Template repo for MLOps projects"
   visibility         = "public"
   is_template        = true

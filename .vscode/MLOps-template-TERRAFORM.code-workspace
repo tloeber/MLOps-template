@@ -8,14 +8,44 @@
         "terminal.integrated.cwd": "./terraform/",
 
         // Settings that can't be set by folder, so have to go into workspace settings
-        "terminal.integrated.defaultProfile.linux": "bash",
         "terminal.integrated.defaultProfile.windows": "Git Bash",
-        "terminal.integrated.defaultProfile.osx": "bash",
         "python.languageServer": "Pylance",
         "terraform.experimentalFeatures.validateOnSave": true,
 
+
+        // Load env variables from file on terminal startup
+        // ================================================
+
+        // "terminal.integrated.env.linux": {},
+        "terminal.integrated.profiles.linux": {
+            "tf_env_linux": {
+                "path": "bash",
+                "args": [
+                    // Note: env is shared between all tf workspaces (Filepath is relative
+                    // to `terminal.integrated.cwd` set above)
+                    "--init-file", "load_env_variables.sh",
+                ]
+            }
+        },
+        // Note: OSX config has not been tested.
+        "terminal.integrated.profiles.osx": {
+            "tf_env_linux": {
+                "path": "bash",
+                "args": [
+                    // Note: env is shared between all tf workspaces (Filepath is relative
+                    // to `terminal.integrated.cwd` set above)
+                    "--init-file", "load_env_variables.sh",
+                ]
+            }
+        },
+        // Set this as default terminal profile
+        "terminal.integrated.defaultProfile.linux": "tf_env_linux",
+        "terminal.integrated.defaultProfile.osx": "tf_env_osx",
     },
+
+
     // Debug config for Python
+    // ========================
     "launch": {
         "version": "0.2.0",
         "configurations": [

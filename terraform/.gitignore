@@ -4,6 +4,11 @@
 # To exclude a tfvars file (e.g., if repo is public), explicitly name it `untracked.tfvars`
 untracked.*.tfvars
 
+# Exclude specific env vars, except for template file
+*.env
+!*.env.template
+
+
 # Standard TF conventions
 # ========================
 
