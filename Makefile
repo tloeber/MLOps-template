@@ -8,13 +8,14 @@ env:
 	# (Re-)create directory for virtual environments
 	rm -rf ${VENV_LOCATION}
 	mkdir -p ${VENV_LOCATION}
-	# Create virtual environment manually, so we control name
-	${PYTHON} -m venv ${VENV_LOCATION}
-	# We will use poetry from *within* the virtual environment
-	source ${VENV_LOCATION}/bin/activate && \
-		which python && \
+	# Create virtual environment manually, so we control name. Then use poetry from *within* the virtual env.
+	# Just in case, deactivate any activate environment first
+	( deactivate || echo "no virtual env active" ) && \
+		${PYTHON} -m venv ${VENV_LOCATION} && \
+		source ${VENV_LOCATION}/bin/activate && \
+		echo "Python version used: $(which python)" && \
 		${PYTHON} -m pip install poetry && \
-		poetry env use ${PYTHON} && \
+		${PYTHON} -m poetry lock && \
 		${PYTHON} -m poetry install --all-extras
 
 env-update:
