@@ -1,20 +1,22 @@
 SHELL := /bin/bash
+include terraform/.env
+
 # Set major and minor version of python
 PYTHON := python3.11
 PROJECT_NAME := MLOps_template
 VENV_LOCATION := ~/.virtual_environments/${PROJECT_NAME}
 
 env:
-	# (Re-)create directory for virtual environments
-	rm -rf ${VENV_LOCATION}
-	mkdir -p ${VENV_LOCATION}
-	# Create virtual environment manually, so we control name. Then use poetry from *within* the virtual env.
+	# Remove exiting virtual environments, if found
+	( rm -rf .venv && echo "Removing existing venv" ) || \
+		echo "No existing virtual environment found."
+
+	# Set poetry to install virtual environment into *project* folder, because otherwise venv name
+	# is not deterministic. See https://github.com/python-poetry/poetry/issues/263
 	# Just in case, deactivate any activate environment first
-	( deactivate || echo "no virtual env active" ) && \
-		${PYTHON} -m venv ${VENV_LOCATION} && \
-		source ${VENV_LOCATION}/bin/activate && \
-		echo "Python version used: $(which python)" && \
+	( deactivate &> /dev/null || echo "No virtual env active" ) && \
 		${PYTHON} -m pip install poetry && \
+		${PYTHON} -m poetry config virtualenvs.in-project true && \
 		${PYTHON} -m poetry lock && \
 		${PYTHON} -m poetry install --all-extras
 
@@ -47,3 +49,6 @@ build:
 
 publish:
 	poetry publish
+
+authenticate-databricks:
+	databricks auth login --host ${DATABRICKS_WORKSPACE_URL}

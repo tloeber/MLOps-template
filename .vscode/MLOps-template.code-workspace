@@ -5,11 +5,8 @@
         }
     ],
     "settings": {
-        "terminal.integrated.cwd": "src/my_project",
+        // "terminal.integrated.cwd": "src/my_project",
         // Settings that can't be set by folder, so have to go into workspace settings
-        "terminal.integrated.defaultProfile.linux": "bash",
-        "terminal.integrated.defaultProfile.windows": "Git Bash",
-        "terminal.integrated.defaultProfile.osx": "bash",
         "python.languageServer": "Pylance",
         "terraform.experimentalFeatures.validateOnSave": true,
 
