@@ -51,4 +51,4 @@ publish:
 	poetry publish
 
 authenticate-databricks:
-	databricks auth login --host ${DATABRICKS_WORKSPACE_URL}
+	databricks auth login --host https://accounts.cloud.databricks.com --account-id ${DATABRICKS_ACCOUNT_ID}

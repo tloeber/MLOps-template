@@ -12,6 +12,8 @@ data "databricks_spark_version" "ml" {
 
 resource "databricks_cluster" "this" {
   cluster_name            = var.cluster_name
+  # To make sure only one cluster of that name exists. Surprisingly this is not the case by default
+  idempotency_token       = var.cluster_name
   node_type_id            = data.databricks_node_type.smallest.id
   spark_version           = data.databricks_spark_version.ml.id
   autotermination_minutes = var.cluster_autotermination_minutes
